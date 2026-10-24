@@ -158,7 +158,7 @@ footer .cred b{color:rgba(255,255,255,.7)}
 /* motion layer */
 :root{--ease:cubic-bezier(.22,.61,.36,1)}
 body{overflow-x:hidden}
-.rv{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
 .rv.in{opacity:1;transform:none}
 @keyframes kb{from{transform:scale(1.02)}to{transform:scale(1.1)}}
 .hero .bg{animation:kb 22s var(--ease) infinite alternate;will-change:transform}
@@ -440,11 +440,15 @@ window.addEventListener('scroll',function(){
  if(obEl){var r=obEl.parentElement.getBoundingClientRect();
   if(r.top<window.innerHeight&&r.bottom>0){var p=(window.innerHeight-r.top)/(window.innerHeight+r.height);
    obEl.style.transform='translateY('+((p-.5)*44)+'px) scale(1.15)';}}
+document.querySelectorAll('.rv').forEach(function(el){
+  var r=el.getBoundingClientRect();
+  if(r.top<window.innerHeight-40&&r.bottom>0){el.classList.add('in')}
+ });
 },{passive:true});
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){
  e.target.classList.add('in');
  setTimeout(function(){e.target.classList.remove('rv','in');e.target.style.transitionDelay=''},950);
- io.unobserve(e.target);}})},{threshold:.12});
+ io.unobserve(e.target);}})},{threshold:.05,rootMargin:'0px 0px -6% 0px'});
 var stag={'.tc':.07,'.dep':.05,'.rc':.09,'.rl':.04};
 Object.keys(stag).forEach(function(sel){document.querySelectorAll(sel).forEach(function(el,i){el.style.transitionDelay=((i%4)*stag[sel])+'s'})});
 ['.shead','.oban','.tc','.dep','.rc','.rl','.results','.depsnote'].forEach(function(sel){
