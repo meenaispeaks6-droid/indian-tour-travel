@@ -148,7 +148,8 @@ footer .cred b{color:rgba(255,255,255,.7)}
 .modal .foot .pr{font-size:24px;font-weight:800}
 .modal .foot .pr i{font-style:normal;font-size:12px;font-weight:600;color:var(--mut);margin-right:5px}
 .x{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;border:none;background:#fff;font-size:17px;cursor:pointer;color:var(--deep);box-shadow:0 6px 16px rgba(0,0,0,.25)}
-.fwa{position:fixed;bottom:92px;right:22px;width:56px;height:56px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 26px rgba(0,0,0,.28);z-index:70;transition:transform .2s}
+.fwa{position:fixed;bottom:92px;right:22px;width:56px;height:56px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 26px rgba(0,0,0,.28);z-index:70;opacity:0;pointer-events:none;transition:transform .2s,opacity .3s}
+.fwa.show{opacity:1;pointer-events:auto}
 .fwa:hover{transform:scale(1.07)}
 .fwa svg{width:30px;height:30px;fill:#fff}
 @media(max-width:1020px){.rgrid{grid-template-columns:1fr 1fr}.rreels{grid-template-columns:repeat(4,1fr)}footer .cols{grid-template-columns:1fr 1fr}.pol{margin-top:-30px}}
@@ -378,7 +379,7 @@ function openD(k){var d=DEST[k];if(!d)return;
 function closeD(){document.getElementById('ov').classList.remove('on');document.body.style.overflow=''}
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeD()});
 document.getElementById('ov').addEventListener('click',function(e){if(e.target===this)closeD()});
-window.addEventListener('scroll',function(){document.querySelector('nav').classList.toggle('sc',window.scrollY>60)});
+window.addEventListener('scroll',function(){document.querySelector('nav').classList.toggle('sc',window.scrollY>60);document.querySelector('.fwa').classList.toggle('show',window.scrollY>420)});
 function slide(n){var r=document.getElementById('rail');var w=r.querySelector('.tc').offsetWidth+20;r.scrollBy({left:n*w,behavior:'smooth'})}
 function searchTrips(){
  var w=document.getElementById('where').value,m=document.getElementById('when').value,g=document.getElementById('guest').value;
